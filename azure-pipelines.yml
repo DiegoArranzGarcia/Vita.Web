@@ -41,7 +41,7 @@ stages:
               configMode: 'manual'
               cliProjectKey: 'DiegoArranzGarcia_Vita.Web'
               cliProjectName: 'Vita.Web'
-              cliSources: '.'
+              cliSources: './src'
 
           - task: Bash@3
             inputs:
