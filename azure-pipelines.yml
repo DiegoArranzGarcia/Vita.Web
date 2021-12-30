@@ -37,9 +37,11 @@ stages:
             inputs:
               SonarCloud: 'SonarCloud (Vita)'
               organization: 'vita'
-              scannerMode: 'MSBuild'
-              projectKey: 'DiegoArranzGarcia_Vita.Goals'
-              projectName: 'Vita.Goals'
+              scannerMode: 'CLI'
+              configMode: 'manual'
+              cliProjectKey: 'DiegoArranzGarcia_Vita.Goals'
+              cliProjectName: 'Vita.Goals'
+              cliSources: '.'
 
           - task: Bash@3
             inputs:
