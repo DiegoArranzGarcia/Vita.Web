@@ -43,7 +43,7 @@ stages:
               cliProjectName: 'Vita.Web'
               cliSources: '.'
               extraProperties: |
-                sonar.sources=src/app,src/@vimbo
+                sonar.sources=src/app
                 sonar.exclusions=**/dist/**/*,**/node_modules/**,**/*.spec.ts,**/assets/*
                 sonar.ts.tslint.configPath=tslint.json
 
