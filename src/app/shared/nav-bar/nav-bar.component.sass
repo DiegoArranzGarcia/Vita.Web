@@ -1,0 +1,145 @@
+@import '../../../styles'
+
+nav.navbar
+    font-size: large
+    background-color: $neutral-two
+    color: $primary-color
+    height: $bar-default-height
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+
+    h1
+        color: $primary-color
+        margin: 0 0.5em
+
+    fa-icon.navbar__options__menu-icon
+        color: $primary-color
+        margin: 0 1em
+        display: none
+
+    fa-icon.navbar__options__app-icon
+        color: $primary-color
+        margin: 0 1em
+
+    div.navbar__options
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        height: 100%
+        width: 100%
+
+        div.navbar__option
+            min-width: 4.5em
+            height: 100%
+            display: flex
+            justify-content: space-around
+            align-items: center
+            flex-direction: column
+            padding: 0 0.5em
+            cursor: pointer
+
+            div.option__main
+                display: flex
+                justify-content: center
+                align-items: center
+                flex-direction: column
+                height: 100%
+                width: 100%
+                padding: 0.75em 0 0.3em 0
+
+                p
+                    font-weight: 600
+                    font-size: 0.7em
+
+                &.hover
+                    background-color: rgb(33, 37, 41, 0.45)
+
+            div.option__highlight
+                height: 4px
+                width: 100%
+
+            &.active
+                color: $primary-color
+
+                div.option__highlight
+                    background-image: linear-gradient(to right, $primary-color, $alternative-color-two)
+                    border-radius: 1.5px
+
+div.menu__options
+    width: 100%
+    background-color: $neutral-two
+    color: $primary-color
+    display: block
+    position: absolute
+    padding: 1em 0em
+    overflow: hidden
+    border-bottom: 1px solid $primary-color
+    border-top: 1px solid $primary-color
+
+    div.separator
+        margin: 1em 2em 1em 1em
+        border-bottom: 1px solid $primary-color
+
+    div.navbar__option
+        width: 100%
+        display: flex
+        justify-content: space-around
+        align-items: flex-start
+        flex-direction: column
+        padding: 0 0.25em
+        cursor: pointer
+
+        div.option__main
+            display: flex
+            justify-content: flex-start
+            align-items: center
+            height: 3em
+            width: 100%
+            padding: 0.25em 0.3em
+
+            p
+                font-weight: 600
+                font-size: 1em
+
+            fa-icon
+                margin-right: 1em
+
+            &.hover
+                background-color: $primary-color
+
+            div.option__highlight
+                width: 4px
+                height: 100%
+                margin-right: 0.5em
+
+        &.active
+            color: $primary-color
+
+            div.option__highlight
+                background-image: linear-gradient(to bottom, $primary-color, $alternative-color-three)
+
+@media (max-width: 768px)
+
+    :host ::ng-deep
+        nav.navbar
+            div.user__container__header
+                display: none
+
+@media (max-width: 480px)
+    nav.navbar
+        justify-content: flex-start
+
+        fa-icon.navbar__options__app-icon
+            display: block
+            margin: 0
+
+        div.navbar__options,
+        vita-user,
+        h1
+            display: none
+
+        div.menu__options,
+        fa-icon.navbar__options__menu-icon
+            display: block
