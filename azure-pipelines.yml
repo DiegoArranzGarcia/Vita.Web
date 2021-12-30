@@ -35,7 +35,7 @@ stages:
 
           - task: SonarCloudPrepare@1
             inputs:
-              SonarCloud: 'SonarCloud (Vita.Web)'
+              SonarCloud: 'SonarCloud (Vita)'
               organization: 'vita'
               scannerMode: 'MSBuild'
               projectKey: 'DiegoArranzGarcia_Vita.Web'
