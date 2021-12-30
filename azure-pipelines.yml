@@ -42,8 +42,6 @@ stages:
               cliProjectKey: 'DiegoArranzGarcia_Vita.Web'
               cliProjectName: 'Vita.Web'
               cliSources: '.'
-              extraProperties: |
-                sonar.inclusions = src;e2e
 
           - task: Bash@3
             inputs:
