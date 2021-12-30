@@ -35,13 +35,11 @@ stages:
 
           - task: SonarCloudPrepare@1
             inputs:
-              SonarCloud: 'SonarCloud (Vita)'
+              SonarCloud: 'SonarCloud (Vita.Web)'
               organization: 'vita'
-              scannerMode: 'CLI'
-              configMode: 'manual'
-              cliProjectKey: 'DiegoArranzGarcia_Vita.Web'
-              cliProjectName: 'Vita.Web'
-              cliSources: './src'
+              scannerMode: 'MSBuild'
+              projectKey: 'DiegoArranzGarcia_Vita.Web'
+              projectName: 'Vita.Web'
 
           - task: Bash@3
             inputs:
