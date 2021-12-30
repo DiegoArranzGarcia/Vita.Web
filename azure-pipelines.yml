@@ -12,7 +12,7 @@ trigger:
       - main
 
 variables:
-  SPADirectory: $(System.DefaultWorkingDirectory)/Vita.SPA
+  SPADirectory: $(System.DefaultWorkingDirectory)
   DownloadArtifacts: $(System.ArtifactsDirectory)/dist
   GulpFile: $(SPADirectory)/gulpfile.js
   shouldDeploy: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
