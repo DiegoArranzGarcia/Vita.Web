@@ -42,6 +42,8 @@ stages:
               cliProjectKey: 'DiegoArranzGarcia_Vita.Web'
               cliProjectName: 'Vita.Web'
               cliSources: '.'
+              extraProperties: |
+                sonar.exclusions=**/node_modules
 
           - task: Bash@3
             inputs:
