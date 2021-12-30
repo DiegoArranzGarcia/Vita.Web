@@ -39,8 +39,8 @@ stages:
               organization: 'vita'
               scannerMode: 'CLI'
               configMode: 'manual'
-              cliProjectKey: 'DiegoArranzGarcia_Vita.Goals'
-              cliProjectName: 'Vita.Goals'
+              cliProjectKey: 'DiegoArranzGarcia_Vita.Web'
+              cliProjectName: 'Vita.Web'
               cliSources: '.'
 
           - task: Bash@3
