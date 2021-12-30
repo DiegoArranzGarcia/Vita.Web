@@ -27,10 +27,26 @@ stages:
       - job: BuildAngularApplication
         displayName: 'Build Angular Application'
         steps:
+
           - task: NodeTool@0
             displayName: 'Install Node.js'
             inputs:
               versionSpec: '12.18.0'
+
+          - task: SonarCloudPrepare@1
+            inputs:
+              SonarCloud: 'SonarCloud (Vita)'
+              organization: 'vita'
+              scannerMode: 'CLI'
+              configMode: 'manual'
+              cliProjectKey: 'DiegoArranzGarcia_Vita.Web'
+              cliProjectName: 'Vita.Web'
+              cliSources: '.'
+              extraProperties: |
+                sonar.sources=src/app
+                sonar.exclusions=**/dist/**/*,**/node_modules/**,**/*.spec.ts,**/assets/*
+                sonar.ts.tslint.configPath=tslint.json
+
           - task: Bash@3
             inputs:
               targetType: 'inline'
@@ -38,6 +54,7 @@ stages:
               script: |
                 npm install
             displayName: 'npm install'
+
           - task: Bash@3
             inputs:
               targetType: 'inline'
@@ -45,6 +62,13 @@ stages:
               script: |
                 npm run build --prod
             displayName: 'Build Angular SPA'
+
+          - task: SonarCloudAnalyze@1
+
+          - task: SonarCloudPublish@1
+            inputs:
+              pollingTimeoutSec: '300'
+
           - task: gulp@0
             inputs:
               gulpFile: $(SPADirectory)/gulpfile.js
@@ -53,6 +77,7 @@ stages:
               gulpjs: $(SPADirectory)/node_modules/gulp/bin/gulp.js
               enableCodeCoverage: false
             displayName: 'Tokenizing Configuration files'
+
           - task: PublishBuildArtifacts@1
             inputs:
               PathtoPublish: '$(SPADirectory)/dist'
