@@ -39,7 +39,7 @@ stages:
               organization: 'vita'
               scannerMode: 'MSBuild'
               projectKey: 'DiegoArranzGarcia_Vita.Goals'
-              projectName: 'Vita.Core'
+              projectName: 'Vita.Goals'
 
           - task: Bash@3
             inputs:
