@@ -43,7 +43,7 @@ stages:
               cliProjectName: 'Vita.Web'
               cliSources: '.'
               extraProperties: |
-                sonar.inclusions=**/src/**/*
+                sonar.inclusions=src/**/*
 
           - task: Bash@3
             inputs:
