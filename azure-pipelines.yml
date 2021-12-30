@@ -9,11 +9,7 @@ trigger:
   branches:
     include:
       - develop
-      - master
-  paths:
-    exclude:
-      - 'Vita.API/**'
-      - 'Vita.Identity/**'
+      - main
 
 variables:
   SPADirectory: $(System.DefaultWorkingDirectory)/Vita.SPA
