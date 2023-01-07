@@ -17,7 +17,7 @@ import { InDevelopment } from './shared/in-development/in-development.component'
         { path: 'unauthorized', component: Unauthorized },
         { path: '**', component: Unauthorized },
       ],
-      { relativeLinkResolution: 'legacy' }
+      {}
     ),
   ],
   exports: [RouterModule],
