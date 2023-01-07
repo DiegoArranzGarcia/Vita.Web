@@ -22,7 +22,7 @@
     "@fortawesome/angular-fontawesome": "0.10.0",
     "@fortawesome/fontawesome-svg-core": "1.2.30",
     "@fortawesome/free-solid-svg-icons": "5.14.0",
-    "angular-auth-oidc-client": "^13.1.0",
+    "angular-auth-oidc-client": "^14.1.0",
     "moment": "^2.27.0",
     "ng-click-outside": "^7.0.0",
     "ngx-moment": "^5.0.0",
