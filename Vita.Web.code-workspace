@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "./",
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.angular": true,			
+			"**/node_modules": true,
+			"**/.vscode": true
+		}
+	}
+}

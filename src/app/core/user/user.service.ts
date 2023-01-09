@@ -9,7 +9,6 @@ export class UserService {
 
   constructor(private _oidcSecurityService: OidcSecurityService) {
     this._currentUser = null;
-    // this._oidcSecurityService.checkAuth().subscribe((isAuthenticated) => (this._isAuthenticated = isAuthenticated));
     this._oidcSecurityService.userData$.subscribe((data) => this.handleOnChangeUserData(data));
   }
 
@@ -37,7 +36,7 @@ export class UserService {
   public signIn(redirectUrl?: string): void {
     if (!redirectUrl) redirectUrl = '/goals';
 
-    this._oidcSecurityService.authorize({ customParams: { ReturnUrl: redirectUrl } });
+    this._oidcSecurityService.authorize(null, { customParams: { ReturnUrl: redirectUrl } });
   }
 
   public signOut(): void {

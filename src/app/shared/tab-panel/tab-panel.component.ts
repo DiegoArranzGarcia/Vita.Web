@@ -1,5 +1,4 @@
-import { taggedTemplate } from '@angular/compiler/src/output/output_ast';
-import { AfterContentInit, AfterViewInit, Component, ContentChildren, Input, OnInit, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, Input, OnInit, QueryList } from '@angular/core';
 import { Tab } from './tab/tab.component';
 
 @Component({
@@ -19,8 +18,6 @@ export class TabPanel implements AfterContentInit {
   private get _selectedTab(): Tab {
     return this._tabs[this._selectedIndex];
   }
-
-  constructor() {}
 
   initTabs() {
     this._selectedIndex = 0;

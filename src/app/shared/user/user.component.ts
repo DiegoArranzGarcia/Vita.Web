@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,14 +20,15 @@ export class UserComponent implements OnInit {
   constructor(public oidcSecurityService: OidcSecurityService) {}
 
   ngOnInit() {
-    this.oidcSecurityService.checkAuth().subscribe(isAuthenticated => (this.isAuthenticated = isAuthenticated));
+    this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData }) => {
+      this.isAuthenticated = isAuthenticated;
 
-    this.oidcSecurityService.userData$.subscribe(data => {
-      if (!data) return;
+      if (!this.isAuthenticated)
+        return;
 
-      this.email = data.email;
-      this.userName = `${data.given_name} ${data.family_name}`;
-      this.userId = data.sub;
+      this.email = userData.email;
+      this.userName = `${userData.given_name} ${userData.family_name}`;
+      this.userId = userData.sub;
     });
   }
 
