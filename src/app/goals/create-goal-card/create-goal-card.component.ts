@@ -3,7 +3,7 @@ import { GoalService } from '../goal.service';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { CreateGoalDto, Goal } from '../goal.model';
 import { UserService } from 'src/app/core/user/user.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'vita-create-goal-card',
@@ -12,16 +12,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CreateGoalCardComponent implements OnInit {
   addIcon = faCheckCircle;
-  goalForm: FormGroup;
+  goalForm: UntypedFormGroup;
 
   @Output() created = new EventEmitter<Goal>();
 
   constructor(private _goalService: GoalService, private _userService: UserService) {}
 
   ngOnInit() {
-    this.goalForm = new FormGroup({
-      titleControl: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      descriptionControl: new FormControl(''),
+    this.goalForm = new UntypedFormGroup({
+      titleControl: new UntypedFormControl('', [Validators.required, Validators.minLength(1)]),
+      descriptionControl: new UntypedFormControl(''),
     });
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Goal } from '../goal.model';
 import { GoalService } from '../goal.service';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -17,14 +17,14 @@ export class GoalCardComponent implements OnInit {
   @Output() deleted = new EventEmitter<Goal>();
   @Output() changed = new EventEmitter<Goal>();
 
-  goalForm: FormGroup;
+  goalForm: UntypedFormGroup;
 
   constructor(private goalService: GoalService) {}
 
   ngOnInit() {
-    this.goalForm = new FormGroup({
-      titleControl: new FormControl(this.goal.title, [Validators.required, Validators.minLength(1)]),
-      descriptionControl: new FormControl(this.goal.description),
+    this.goalForm = new UntypedFormGroup({
+      titleControl: new UntypedFormControl(this.goal.title, [Validators.required, Validators.minLength(1)]),
+      descriptionControl: new UntypedFormControl(this.goal.description),
     });
   }
 
