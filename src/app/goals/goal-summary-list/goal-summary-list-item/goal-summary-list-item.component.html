@@ -1,0 +1,12 @@
+<form [formGroup]="goalForm" (clickOutside)="handleOnClickOutisde()">
+    <div class="goal-summary">
+        <div class="goal-summary__title">
+            <input formControlName="titleControl" [value]="goal.title" spellcheck="false" />
+        </div>
+        <div class="goal-summary__details">
+            <vita-goal-status [goalStatus]="goal.status"></vita-goal-status>
+            <vita-goal-aim-date class="goal-summary__aim-date" [aimDate]="{ start: goal?.aimDateStart, end: goal?.aimDateEnd}" (aimDateChange)="handleOnAimDateChange($event)"></vita-goal-aim-date>
+            <vita-goal-menu class="goal-summary__options" [goal]="goal" (deleted)="handleOnDeleted($event)" (completed)="handleOnCompleted($event)"></vita-goal-menu>        
+        </div>
+    </div>
+</form>

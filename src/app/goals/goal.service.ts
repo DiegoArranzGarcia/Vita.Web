@@ -5,6 +5,7 @@ import { flatMap, map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ConfigurationService } from '../core/configuration/configuration.service';
 
+
 @Injectable()
 export class GoalService {
   private _goalsEndpoint: string;
@@ -40,7 +41,7 @@ export class GoalService {
   }
 
   public updateGoal(id: string, updateDto: UpdateGoalDto): Observable<void> {
-    return this._httpClient.put<void>(this._goalsEndpoint + `/${id}`, updateDto);
+    return this._httpClient.patch<void>(this._goalsEndpoint + `/${id}`, updateDto);
   }
 
   public completeGoal(id: string): Observable<void> {

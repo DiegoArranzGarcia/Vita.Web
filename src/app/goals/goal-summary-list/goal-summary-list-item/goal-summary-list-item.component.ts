@@ -1,16 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Goal } from '../goal.model';
-import { GoalService } from '../goal.service';
-import { UntypedFormGroup, Validators, UntypedFormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { Goal } from "../../goal.model";
+import { GoalService } from "../../goal.service";
 
 @Component({
-  selector: 'vita-goal-card',
-  styleUrls: ['./goal-card.component.sass'],
-  templateUrl: './goal-card.component.html',
-})
-export class GoalCardComponent implements OnInit {
+    selector: 'vita-goal-summary-list-item',
+    templateUrl: './goal-summary-list-item.component.html',
+    styleUrls: ['./goal-summary-list-item.component.sass'],
+  })
+  
+export class GoalSummaryListItemComponent {
+  
   @Input() goal: Goal;
   @Input() deletable: boolean;
 
@@ -23,7 +25,8 @@ export class GoalCardComponent implements OnInit {
 
   ngOnInit() {
     this.goalForm = new UntypedFormGroup({
-      titleControl: new UntypedFormControl(this.goal.title, [Validators.required, Validators.minLength(1)])
+      titleControl: new UntypedFormControl(this.goal.title, [Validators.required, Validators.minLength(1)]),
+      descriptionControl: new UntypedFormControl(this.goal.description),
     });
   }
 
@@ -78,4 +81,5 @@ export class GoalCardComponent implements OnInit {
     this.goalForm.controls['descriptionControl'].setValue(this.goal.description);
     this.goalForm.markAsPristine();
   }
+
 }

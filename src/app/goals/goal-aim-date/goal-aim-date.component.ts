@@ -5,11 +5,11 @@ import { Week } from 'src/app/shared/week-picker/week-picker.component';
 import { Month as Month } from 'src/app/shared/month-picker/month-picker.component';
 
 @Component({
-  selector: 'vita-goal-card-aim-date',
-  templateUrl: './goal-card-aim-date.component.html',
-  styleUrls: ['./goal-card-aim-date.component.sass'],
+  selector: 'vita-goal-aim-date',
+  templateUrl: './goal-aim-date.component.html',
+  styleUrls: ['./goal-aim-date.component.sass'],
 })
-export class GoalCardAimDateComponent implements OnInit {
+export class GoalAimDateComponent implements OnInit {
   _aimDateIcon = faCalendarDay;
   _addAimDateIcon = faCalendarPlus;
 

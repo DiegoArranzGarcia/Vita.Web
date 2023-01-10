@@ -3,21 +3,21 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { GoalCardMenuComponent } from './goal-card-menu.component';
+import { GoalMenuComponent } from './goal-menu.component';
 
 describe('GoalCardMenuComponent', () => {
-  let component: GoalCardMenuComponent;
-  let fixture: ComponentFixture<GoalCardMenuComponent>;
+  let component: GoalMenuComponent;
+  let fixture: ComponentFixture<GoalMenuComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GoalCardMenuComponent ]
+      declarations: [ GoalMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GoalCardMenuComponent);
+    fixture = TestBed.createComponent(GoalMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

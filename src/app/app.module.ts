@@ -9,7 +9,6 @@ import { CoreModule } from './core/core.module';
 import { GoalModule } from './goals/goal.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthConfigModule } from './core/auth/auth-config.module';
 
 @NgModule({
   declarations: [AppComponent],

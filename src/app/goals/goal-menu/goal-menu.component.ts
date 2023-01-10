@@ -3,14 +3,14 @@ import { MenuOption } from 'src/app/shared/menu/menu-option.model';
 import { GoalService } from '../goal.service';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
-import { Goal as Goal, GoalStatus } from '../goal.model';
+import { Goal, GoalStatus } from '../goal.model';
 
 @Component({
-  selector: 'vita-goal-card-menu',
-  templateUrl: './goal-card-menu.component.html',
-  styleUrls: ['./goal-card-menu.component.sass'],
+  selector: 'vita-goal-menu',
+  templateUrl: './goal-menu.component.html',
+  styleUrls: ['./goal-menu.component.sass'],
 })
-export class GoalCardMenuComponent implements OnInit {
+export class GoalMenuComponent implements OnInit {
   @Input() goal: Goal;
 
   @Output() deleted = new EventEmitter<Goal>();

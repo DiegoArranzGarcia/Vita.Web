@@ -1,0 +1,9 @@
+<vita-spinner [loading]="isLoading" text="Loading..."></vita-spinner>
+
+<vita-virtual-scroller *ngIf="!isLoading" [items]="_goals" [itemTemplate]="goalTemplate">  
+  <ng-template let-goal #goalTemplate>
+    <vita-goal-summary-list-item [goal]="goal"></vita-goal-summary-list-item>
+  </ng-template>
+</vita-virtual-scroller>
+
+
