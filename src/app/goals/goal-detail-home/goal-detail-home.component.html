@@ -1,6 +1,6 @@
 <div *ngIf="goal" class="goal-detail">
     <div class="goal-detail__main">
-        <vita-goal-detail-card [goal]="goal" (change)="handleOnGoalChange($event)"></vita-goal-detail-card>
+        <vita-goal-detail-card [goal]="goal" (goalChange)="handleOnGoalChange($event)"></vita-goal-detail-card>
     </div>
     <div class="goal-detail__tasks">
         <vita-goal-tasks [goal]="goal"></vita-goal-tasks>

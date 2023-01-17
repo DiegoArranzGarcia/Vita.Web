@@ -13,7 +13,7 @@ import { Goal, GoalStatus } from '../../goal.model';
 export class GoalDetailCardComponent implements OnInit {
     
     @Input() goal: Goal;
-    @Output() change = new EventEmitter<Goal>();
+    @Output() goalChange = new EventEmitter<Goal>();
 
     goalForm: FormGroup;
     submitIcon = faCheckCircle;
@@ -34,7 +34,7 @@ export class GoalDetailCardComponent implements OnInit {
 
     handleOnStatusChange(status: GoalStatus) {
         let goal = <Goal>{...this.goal, status: status };
-        this.change.emit(goal);
+        this.goalChange.emit(goal);
     }
     
     handleOnSubmit(){
@@ -49,7 +49,7 @@ export class GoalDetailCardComponent implements OnInit {
             status: this.goal.status,
         })
 
-        this.change.emit(goal);
+        this.goalChange.emit(goal);
         this.goalForm.markAsPristine();
     }
 }
