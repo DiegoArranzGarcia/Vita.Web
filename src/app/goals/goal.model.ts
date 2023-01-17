@@ -1,6 +1,10 @@
+import { Task } from "../tasks/task.model";
+
 export enum GoalStatus {
-  Completed = 'completed',
-  ToDo = 'todo',
+  ToBeDefined = 'ToBeDefined',
+  Ready = 'Ready',
+  InProgress = 'InProgress',
+  Completed = 'Completed',
 }
 
 export class Goal {
@@ -11,6 +15,7 @@ export class Goal {
   public status: GoalStatus;
   public aimDateStart: Date;
   public aimDateEnd: Date;
+  public tasks: Task[];
 }
 
 export class CreateGoalDto {

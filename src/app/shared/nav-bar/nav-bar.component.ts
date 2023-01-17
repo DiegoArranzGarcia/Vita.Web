@@ -51,7 +51,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
       {
         label: 'Goals',
         icon: faRocket,
-        navigateTo: '/goals/all',
+        navigateTo: '/goals',
       },
       {
         label: 'Week View',

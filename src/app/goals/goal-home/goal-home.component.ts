@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { faRocket } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
+import { Goal } from '../goal.model';
+import { GoalService } from '../goal.service';
 
 @Component({
   selector: 'vita-goal-home',
@@ -7,9 +9,29 @@ import { faRocket } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./goal-home.component.sass'],
 })
 export class GoalHomeComponent implements OnInit {
-  goalsIcon = faRocket;
+  
+  _goals: Goal[];
+  
+  private getGoalsSubscription: Subscription;
 
-  constructor() {}
+  constructor(private goalService: GoalService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadGoals();
+  }
+
+  ngOnDestroy() {
+    if (!!this.getGoalsSubscription && !this.getGoalsSubscription.closed) this.getGoalsSubscription.unsubscribe();
+  }
+
+  loadGoals() {
+    this.getGoalsSubscription = this.goalService.getGoals(undefined, undefined, false).subscribe(goals => {
+      this._goals = goals;
+    });
+  }
+
+  get isLoading() {
+    return this.getGoalsSubscription && !this.getGoalsSubscription.closed;
+  }
+
 }

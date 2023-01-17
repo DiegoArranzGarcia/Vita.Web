@@ -45,7 +45,15 @@ export class GoalService {
   }
 
   public completeGoal(id: string): Observable<void> {
-    return this._httpClient.post<void>(this._goalsEndpoint + `/${id}/complete`, null);
+    return this._httpClient.put<void>(this._goalsEndpoint + `/${id}/complete`, null);
+  }
+
+  public readyGoal(id: string): Observable<void> {
+    return this._httpClient.put<void>(this._goalsEndpoint + `/${id}/ready`, null);
+  }
+
+  public inProgressGoal(id: string): Observable<void> {
+    return this._httpClient.put<void>(this._goalsEndpoint + `/${id}/in-progress`, null);
   }
 
   private mapGoal(goalDto: Goal): Goal {

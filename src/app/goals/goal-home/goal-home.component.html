@@ -1,4 +1,4 @@
 <div class="goals">
-  <vita-goal-summary-list></vita-goal-summary-list>
-  <!-- <vita-goal-card-list [canCreate]="true" [showCompleted]="true"></vita-goal-card-list> -->
+  <vita-spinner [loading]="isLoading" text="Loading..."></vita-spinner>
+  <vita-goal-list *ngIf="!isLoading" [goals]="_goals"></vita-goal-list>
 </div>

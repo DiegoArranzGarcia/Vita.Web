@@ -1,7 +1,7 @@
 <div class="vita-virtual-scroller">
     <div #content class="vita-virtual-scroller__content">
-        <ng-container *ngFor="let item of items">
-            <ng-content *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"></ng-content>
-        </ng-container>
+        <div class="vita-virtual-scroller__item" *ngFor="let item of items; let i = index">
+            <ng-content *ngTemplateOutlet="itemTemplate; context: { $implicit: item, index: i }"></ng-content>            
+        </div>
     </div>
 </div>

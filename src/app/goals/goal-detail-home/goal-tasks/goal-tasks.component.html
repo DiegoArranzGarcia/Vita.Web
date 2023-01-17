@@ -1,0 +1,15 @@
+<vita-card>
+    <div vita-card-header class="goal-tasks__header">
+        <span>Tasks</span>
+        <fa-icon *ngIf="!isCreatingTask" [icon]="addIcon" [size]="'sm'" (click)="onClick()"></fa-icon>
+    </div>
+    <div vita-card-content class="goal-tasks__content">
+        <vita-virtual-scroller [items]="tasks" [itemTemplate]="taskTemplate">
+            <ng-template let-item let-index="index" #taskTemplate>
+                <vita-goal-task [task]="item.task"
+                                (taskChange)="handleTaskChange($event, index)"
+                                (delete)="handleDelete(index)"></vita-goal-task>
+            </ng-template>
+        </vita-virtual-scroller>
+    </div>
+</vita-card>
