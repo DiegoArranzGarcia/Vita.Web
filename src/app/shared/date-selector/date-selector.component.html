@@ -1,5 +1,5 @@
 <ng-container>
-  <vita-label *ngIf="dateSelected?.start" (click)="toogleAimDatePicker($event)">{{_dateSelected | aimDate:_selectedOption}}</vita-label>
+  <vita-label *ngIf="dateSelected?.start" (click)="toogleAimDatePicker($event)">{{dateSelected | aimDate:_selectedOption}}</vita-label>
   <fa-icon *ngIf="!dateSelected?.start" (click)="toogleAimDatePicker($event)" [icon]="_aimDateIcon" size="sm"></fa-icon>
     <vita-modal #modal>
     <div class="vita-aim-date-picker__modal__container">

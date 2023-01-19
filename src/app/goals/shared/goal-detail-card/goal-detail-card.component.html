@@ -1,17 +1,17 @@
 <form [formGroup]="goalForm" (ngSubmit)="handleOnSubmit()">
     <vita-card>
         <div vita-card-header class="goal-detail__header">
-            <input formControlName="title" spellcheck="false" />
+            <input [readOnly]="readOnly" placeholder="Enter a title for a goal" formControlName="title" spellcheck="false" />
             <button type="submit" *ngIf="goalForm.valid && goalForm.dirty">
                 <fa-icon [icon]="submitIcon" [size]="'sm'"></fa-icon>
             </button>
-            <vita-goal-menu [goal]="goal" (deleted)="handleOnDelete()" (statusChange)="handleOnStatusChange($event)"></vita-goal-menu>
+            <vita-goal-menu *ngIf="!readOnly" [goal]="goal" (deleted)="handleOnDelete()" (statusChange)="handleOnStatusChange($event)"></vita-goal-menu>
         </div>
         <div vita-card-content class="goal-detail__content">
-            <textarea formControlName="description" class="goal-detail__notes"></textarea>
+            <textarea placeholder="Enter a description of the goal" [readOnly]="readOnly" formControlName="description" class="goal-detail__notes"></textarea>
             <div class="goal-detail__statistics">
                 <vita-goal-status [goalStatus]="goal.status"></vita-goal-status>
-                <vita-date-selector formControlName="aimDate" [dateSelected]="this.goalForm.get('aimDate').value"></vita-date-selector>
+                <vita-date-selector [readOnly]="readOnly" formControlName="aimDate" [dateSelected]="this.goalForm.get('aimDate').value"></vita-date-selector>
             </div>
         </div>
     </vita-card>

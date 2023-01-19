@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Task } from 'src/app/tasks/task.model';
 import { Goal } from '../goal.model';
 import { GoalService } from '../goal.service';
 
@@ -18,7 +19,7 @@ export class GoalDetailHomeComponent implements OnInit {
 
     ngOnInit() {
         this.route.params.subscribe(routeParams => {
-            this.id = routeParams['id'];        
+            this.id = routeParams['id'];    
             this.loadGoalById(this.id);
         });
     }    
@@ -28,10 +29,12 @@ export class GoalDetailHomeComponent implements OnInit {
     }
 
     handleOnGoalChange(goal: Goal){
-        if  (this.goal.status === goal.status)
+        const hasSameStatus = this.goal.status === goal.status;
+        
+        if  (hasSameStatus)
             this.updateGoal(goal);
-        else 
-            this.goal = goal;
+        
+        this.goal = goal;
     }
 
     private updateGoal(goal: Goal) {

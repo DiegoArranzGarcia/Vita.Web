@@ -13,6 +13,8 @@ import { Goal, GoalStatus } from '../../goal.model';
 export class GoalDetailCardComponent implements OnInit {
     
     @Input() goal: Goal;
+    @Input() readOnly: boolean = true;
+    
     @Output() goalChange = new EventEmitter<Goal>();
 
     goalForm: FormGroup;
@@ -43,7 +45,7 @@ export class GoalDetailCardComponent implements OnInit {
             title: this.goalForm.get('title').value,
             description: this.goalForm.get('description').value,
             createdOn: this.goal.createdOn,
-            tasks: this.goal.tasks,
+
             aimDateStart: this.goalForm.get('aimDate').value.start,
             aimDateEnd: this.goalForm.get('aimDate').value.end,
             status: this.goal.status,

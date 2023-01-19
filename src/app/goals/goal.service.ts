@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ConfigurationService } from '../core/configuration/configuration.service';
+import { Task } from '../tasks/task.model';
 
 
 @Injectable()
@@ -15,9 +16,15 @@ export class GoalService {
   }
 
   public getGoal(id: string): Observable<Goal> {
-    return this._httpClient.get<Goal>(this._goalsEndpoint + `/${id}`).pipe(map(goal => this.mapGoal(goal)));
+    return this._httpClient.get<Goal>(this._goalsEndpoint + `/${id}`)
+                           .pipe(map(goal => this.mapGoal(goal)));
   }
-
+  
+  public getGoalTasks(id: string) : Observable<Task[]> {
+    return this._httpClient.get<Task[]>(this._goalsEndpoint + `/${id}/tasks`)
+                           .pipe(map(tasks => this.mapGoalTasks(tasks)));
+  }
+  
   public getGoals(startDate?: Date, endDate?: Date, showCompleted?: boolean): Observable<Goal[]> {
     let params = new HttpParams();
 
@@ -29,6 +36,7 @@ export class GoalService {
       .get<Goal[]>(this._goalsEndpoint, { params: params })
       .pipe(map(goals => goals.map(goal => this.mapGoal(goal))));
   }
+
 
   public createGoal(createDto: CreateGoalDto): Observable<Goal> {
     return this._httpClient
@@ -63,5 +71,13 @@ export class GoalService {
       aimDateEnd: goalDto.aimDateEnd ? new Date(goalDto.aimDateEnd) : null,
       createdOn: goalDto.createdOn ? new Date(goalDto.createdOn) : null,
     };
+  }
+
+  private mapGoalTasks(tasks: Task[]): Task[] {
+    return (tasks|| []).map(task => <Task>({ 
+      ...task, 
+      plannedDateStart: task.plannedDateStart ? new Date(task.plannedDateStart) : null, 
+      plannedDateEnd: task.plannedDateEnd ? new Date(task.plannedDateEnd) : null
+    }));
   }
 }

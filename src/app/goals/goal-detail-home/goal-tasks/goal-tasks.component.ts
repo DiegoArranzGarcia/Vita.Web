@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Task } from 'src/app/tasks/task.model';
 import { TaskService } from 'src/app/tasks/task.service';
 import { Goal } from '../../goal.model';
-import { GoalTaskListItem } from './goal-tasks.model';
+import { GoalService } from '../../goal.service';
 
 @Component({
     selector: 'vita-goal-tasks',
@@ -13,73 +13,55 @@ import { GoalTaskListItem } from './goal-tasks.model';
 
 export class GoalTasksComponent implements OnInit {
 
-    @Input() goal: Goal;
+    @Input() goalId: string;
 
-    addIcon = faPlus;
-    tasks: GoalTaskListItem[];
+    _goalTasks: Task[];
 
-    constructor(private taskService: TaskService) {
+    constructor(private goalService: GoalService, private taskService: TaskService) {
         
     }
 
-    ngOnInit() { 
-        this.tasks = (this.goal.tasks || []).map(x => <GoalTaskListItem>({
-             task: x,
-             isCreating: false,
-             editing: false
-        }));
+    ngOnInit(): void {
+        this.goalService.getGoalTasks(this.goalId)
+                        .subscribe(tasks => this._goalTasks = tasks);
     }
 
-    onClick() {
-        var task: GoalTaskListItem = { task: ({taskId: "", title: "", plannedDateStart: undefined, plannedDateEnd: undefined }), isCreating: true };
-        this.tasks = [...this.tasks, task];
+    handleOnTaskChanged(event: { task : Task, index: number }) {
+        const updateTaskDto = {
+            title: event.task.title,
+            plannedDateStart: event.task.plannedDateStart,
+            plannedDateEnd: event.task.plannedDateEnd,
+            goalId: this.goalId
+        };
+
+        this.taskService.updateTask(event.task.taskId, updateTaskDto)
+                        .subscribe(_ =>  { 
+                            let tasks = [...this._goalTasks];
+                            tasks[event.index] = event.task;
+                            this._goalTasks = tasks;
+                        });
     }
 
-    handleTaskChange(task: Task, index: number) {
-        var submittedTask: GoalTaskListItem = this.tasks[index];
-        
-        if (submittedTask.isCreating)
-            this.createTask(task, index);
-        else
-            this.updateTask(task);
-    }
-
-    createTask(task: Task, index: number) {
-        this.taskService.createTask({ 
-            title: task.title, 
+    handleTaskCreated(task: Task) {
+        const createTaskDto = {
+            title: task.title,
             plannedDateStart: task.plannedDateStart,
             plannedDateEnd: task.plannedDateEnd,
-            goalId: this.goal.id 
-        }).subscribe(task => {
-            this.tasks[index] = <GoalTaskListItem>({
-                task:task,
-                isCreating: false,
-            })
-        });
+            goalId: this.goalId
+        };
+
+        this.taskService.createTask(createTaskDto)
+                        .subscribe(task => { this._goalTasks = [...this._goalTasks, task]; });
     }
 
-    updateTask(task: Task) {
-        this.taskService.updateTask(task.taskId, { 
-            title: task.title, 
-            plannedDateStart: task.plannedDateStart,
-            plannedDateEnd: task.plannedDateEnd,
-            goalId: this.goal.id 
-        }).subscribe();
-    }
+    handleOnTaskDeleted(index: number) {
 
-    handleDelete(index: number) {
-        let taskToDelete = this.tasks[index];
-
-        this.taskService.deleteTask(taskToDelete.task.taskId)
+        this.taskService.deleteTask(this._goalTasks[index].taskId)
                         .subscribe(() => {
-                            let tasksWithoutRemovedOne = [...this.tasks];
+                            let tasksWithoutRemovedOne = [...this._goalTasks];
                             tasksWithoutRemovedOne.splice(index, 1);
 
-                            this.tasks = tasksWithoutRemovedOne;
+                            this._goalTasks = tasksWithoutRemovedOne;
                         })
-    }
-
-    get isCreatingTask() : boolean {
-        return this.tasks.some(x => x.isCreating === true);
     }
 }

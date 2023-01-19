@@ -56,7 +56,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
       {
         label: 'Week View',
         icon: faCalendarWeek,
-        navigateTo: '/goals/week',
+        navigateTo: '/tasks/weekly',
       },
     ];
 

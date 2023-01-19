@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { GoalModule } from './goals/goal.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TaskModule } from './tasks/task.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule, // Shared (multi-instance) objects
     CategoryModule,
     GoalModule,
+    TaskModule,
     FontAwesomeModule
   ],
   providers: [],

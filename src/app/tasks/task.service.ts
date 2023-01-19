@@ -1,16 +1,29 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { flatMap } from "rxjs/operators";
+import { flatMap, map } from "rxjs/operators";
 import { ConfigurationService } from "../core/configuration/configuration.service";
 import { CreateTaskDto, Task } from "./task.model";
 
 @Injectable()
 export class TaskService {
+
     private _tasksEndpoint: string;
   
     constructor(configurationService: ConfigurationService, private _httpClient: HttpClient) {
       this._tasksEndpoint = `${configurationService.getConfiguration().vitaApiEndpoint}/api/tasks`;
+    }
+
+    public getTasks(startDate?: Date, endDate?: Date, showCompleted?: boolean): Observable<Task[]> {
+      let params = new HttpParams();
+  
+      if (startDate) params = params.set('startDate', startDate.toISOString());
+      if (endDate) params = params.set('endDate', endDate.toISOString());
+      if (showCompleted) params = params.set('showCompleted', showCompleted.toString());
+  
+      return this._httpClient
+        .get<Task[]>(this._tasksEndpoint, { params: params })
+        .pipe(map(tasks => tasks.map(task => this.mapTask(task))));
     }
 
     public createTask(createTaskDto: CreateTaskDto): Observable<Task> {
@@ -25,5 +38,13 @@ export class TaskService {
 
     public deleteTask(id: string){
       return this._httpClient.delete(this._tasksEndpoint + `/${id}`);
+    }
+
+    private mapTask(task: Task): Task {
+      return ({
+        ...task,
+        plannedDateEnd: task.plannedDateEnd ? new Date(task.plannedDateEnd) : null,
+        plannedDateStart: task.plannedDateStart ? new Date(task.plannedDateStart) : null
+      })
     }
 }

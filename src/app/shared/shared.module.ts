@@ -28,7 +28,7 @@ import { WeekSelectorComponent } from './week-selector/week-selector.component';
 import { VirtualScroller } from './virtual-sroll-list/virtual-scroller.component';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
 import { DateSelectorPipe } from './date-selector/date-selector-pipe/date-selector.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const exportableModules = [CommonModule, FontAwesomeModule, MomentModule];
 
@@ -62,6 +62,6 @@ const declarables = [
 @NgModule({
   declarations: declarables,
   exports: [...declarables, ...exportableModules],
-  imports: [CommonModule, FormsModule, MomentModule, FontAwesomeModule, ClickOutsideModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MomentModule, FontAwesomeModule, ClickOutsideModule],
 })
 export class SharedModule {}

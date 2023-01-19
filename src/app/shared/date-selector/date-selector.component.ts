@@ -21,6 +21,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class DateSelectorComponent implements ControlValueAccessor, OnInit {
 
   @Input() dateSelected: { start: Date; end: Date };
+  @Input() readOnly: boolean = true;
 
   _aimDateIcon = faCalendarDay;
   _addAimDateIcon = faCalendarPlus;
@@ -37,38 +38,32 @@ export class DateSelectorComponent implements ControlValueAccessor, OnInit {
   disabled = false;
 
   public get day(): Date {
-    return this._dateSelected?.start;
+    return this.dateSelected?.start;
   }
 
   public get month(): Month {
-    if (!this._dateSelected?.start) return null;
+    if (!this.dateSelected?.start) return null;
 
-    return { month: this._dateSelected.start.getMonth(), year: this._dateSelected.start.getFullYear() };
+    return { month: this.dateSelected.start.getMonth(), year: this.dateSelected.start.getFullYear() };
   }
 
   public get week(): Week {
-    if (!this._dateSelected?.start) return null;
+    if (!this.dateSelected?.start) return null;
 
-    return { startDate: this._dateSelected.start, endDate: this._dateSelected.end };
+    return { startDate: this.dateSelected.start, endDate: this.dateSelected.end };
   }
 
   public get year(): number {
-    if (!this._dateSelected?.start) return null;
+    if (!this.dateSelected?.start) return null;
 
-    return this._dateSelected.start.getFullYear();
-  }
-
-  public get _dateSelected() : ({ start: Date, end: Date}) {
-    return !!this.dateSelected ?
-           ({ start: new Date(this.dateSelected.start), end: new Date(this.dateSelected.end)}) :
-           undefined;
+    return this.dateSelected.start.getFullYear();
   }
 
   @ViewChild('modal') modal: ModalComponent;
 
   ngOnInit() {
     this._options = ['Year', 'Month', 'Week', 'Day'];
-    this._selectedOption = this.getOption(this._dateSelected);
+    this._selectedOption = this.getOption(this.dateSelected);
   }
 
   writeValue(newValue: any): void {
@@ -127,6 +122,9 @@ export class DateSelectorComponent implements ControlValueAccessor, OnInit {
   }
 
   toogleAimDatePicker(event: Event) {
+    if (this.readOnly)
+      return;
+
     this.modal.toogle();
     event.preventDefault();
   }

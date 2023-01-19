@@ -26,7 +26,6 @@ export class CreateGoalHomeComponent implements OnInit {
             status: GoalStatus.ToBeDefined,
             aimDateStart: undefined,
             aimDateEnd: undefined,
-            tasks: [],
             createdOn: new Date()
         })
     }

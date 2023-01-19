@@ -15,7 +15,6 @@ export class Goal {
   public status: GoalStatus;
   public aimDateStart: Date;
   public aimDateEnd: Date;
-  public tasks: Task[];
 }
 
 export class CreateGoalDto {
