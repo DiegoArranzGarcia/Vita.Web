@@ -1,0 +1,25 @@
+<vita-card>
+    <div vita-card-header class="task-list__header" (click)="triggerCollapsible()">
+        <span>{{header}}</span>
+        <fa-icon *ngIf="!readOnly && !_taskBeingCreated" [icon]="_addIcon" [size]="'sm'" (click)="handleOnTaskBeingCreated()"></fa-icon>
+    </div>
+    <div vita-card-content class="task-list__content" *ngIf="!_collapsed || !collapsible">
+        <vita-virtual-scroller [items]="_currentTasks" [itemTemplate]="taskTemplate">
+            <ng-template let-item let-index="index" #taskTemplate>
+                <vita-task-list-item *ngIf="item.listItemState === 'Created'; else elseBlock"
+                                     [task]="item"
+                                     [readOnly]="false"
+                                     (submitTask)="handleTaskCreated($event)"
+                                     (deleteTask)="cancelTaskBeingCreated()">
+                </vita-task-list-item>
+                <ng-template #elseBlock>
+                    <vita-task-list-item  [task]="item"
+                                          [readOnly]="readOnly"
+                                          (submitTask)="handleTaskChange($event, index)"
+                                          (deleteTask)="handleDelete(index)">
+                    </vita-task-list-item>                
+                </ng-template>
+            </ng-template>
+        </vita-virtual-scroller>
+    </div>
+</vita-card>

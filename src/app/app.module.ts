@@ -9,7 +9,7 @@ import { CoreModule } from './core/core.module';
 import { GoalModule } from './goals/goal.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthConfigModule } from './core/auth/auth-config.module';
+import { TaskModule } from './tasks/task.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +21,7 @@ import { AuthConfigModule } from './core/auth/auth-config.module';
     SharedModule, // Shared (multi-instance) objects
     CategoryModule,
     GoalModule,
+    TaskModule,
     FontAwesomeModule
   ],
   providers: [],

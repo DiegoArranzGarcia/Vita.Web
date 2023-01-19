@@ -17,11 +17,11 @@ export class UserService {
 
     this._isAuthenticated = true;
     this._currentUser = {
-      id: data.sub,
-      email: data.email,
-      firstName: data.given_name,
-      lastName: data.family_name,
-      fullName: `${data.given_name} ${data.family_name}`,
+      id: data.userData.sub,
+      email: data.userData.email,
+      firstName: data.userData.given_name,
+      lastName: data.userData.family_name,
+      fullName: `${data.userData.given_name} ${data.userData.family_name}`,
     };
   }
 

@@ -1,0 +1,36 @@
+@import '../../../../../styles'
+    
+div.goal-summary
+    display: flex
+    flex-direction: row
+    align-content: space-between
+    align-items: center
+    height: 2em
+
+    div.goal-summary__title
+        display: flex
+        flex-direction: row
+        gap: 1em
+        justify-content: center
+        align-items: flex-start
+        width: 100%
+
+        input
+            width: 100%
+            text-overflow: ellipsis
+            background-color: $neutral-two
+            border: none
+            font-size: 1.3em
+            color: $primary-color
+
+    input, textarea
+        &:focus, &:active
+            outline: none
+
+    div.goal-summary__details
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        gap: 1em
+        
+            

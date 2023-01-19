@@ -25,6 +25,10 @@ import { MonthPicker } from './month-picker/month-picker.component';
 import { YearPicker } from './year-picker/year-picker.component';
 import { ClickOutsideDirective } from './clicked-outside/clicked-outside.directive';
 import { WeekSelectorComponent } from './week-selector/week-selector.component';
+import { VirtualScroller } from './virtual-sroll-list/virtual-scroller.component';
+import { DateSelectorComponent } from './date-selector/date-selector.component';
+import { DateSelectorPipe } from './date-selector/date-selector-pipe/date-selector.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const exportableModules = [CommonModule, FontAwesomeModule, MomentModule];
 
@@ -50,11 +54,14 @@ const declarables = [
   YearPicker,
   ClickOutsideDirective,
   WeekSelectorComponent,
+  VirtualScroller,
+  DateSelectorComponent,
+  DateSelectorPipe
 ];
 
 @NgModule({
   declarations: declarables,
   exports: [...declarables, ...exportableModules],
-  imports: [CommonModule, MomentModule, FontAwesomeModule, ClickOutsideModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MomentModule, FontAwesomeModule, ClickOutsideModule],
 })
 export class SharedModule {}

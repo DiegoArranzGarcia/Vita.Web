@@ -1,6 +1,8 @@
 export enum GoalStatus {
-  Completed = 'completed',
-  ToDo = 'todo',
+  ToBeDefined = 'ToBeDefined',
+  Ready = 'Ready',
+  InProgress = 'InProgress',
+  Completed = 'Completed',
 }
 
 export class Goal {

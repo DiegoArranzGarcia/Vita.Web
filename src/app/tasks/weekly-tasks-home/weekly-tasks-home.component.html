@@ -1,0 +1,18 @@
+<div class="weekly-tasks-home">
+  <div class="weekly-tasks-home__header">
+    <vita-week-selector [week]="_week" (weekChange)="handleOnWeekChange($event)"></vita-week-selector>
+  </div>
+  <div class="weekly-tasks-home__goals" *ngIf="_tasks">
+    <vita-task-list [header]="'Weekly Tasks'"
+                    [collapsible]="true" 
+                    [tasks]="_weeklyTasks">
+    </vita-task-list>
+    <div *ngFor="let weekday of _weekdays; let index = index" class="weekly-task-home__weekdays__container">
+      <vita-task-list 
+        [header]="_weekdays[index]"
+        [collapsible]="true"  
+        [tasks]="_dailyTasksPerWeekday[index]">
+      </vita-task-list>
+    </div>
+  </div>
+</div>

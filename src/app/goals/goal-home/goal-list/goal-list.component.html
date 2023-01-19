@@ -1,0 +1,15 @@
+<vita-card>
+  <div vita-card-header class="goal-list__header">
+    <span>Goals</span>
+    <button (click)="onAddGoalClicked()">
+      <fa-icon [icon]="addIcon" [size]="'sm'"></fa-icon>
+    </button>
+  </div>  
+  <div vita-card-content class="goal-list__content">
+    <vita-virtual-scroller [items]="goals" [itemTemplate]="goalTemplate">  
+      <ng-template let-goal #goalTemplate>
+        <vita-goal-list-item [goal]="goal"></vita-goal-list-item>
+      </ng-template>
+    </vita-virtual-scroller>    
+  </div>
+</vita-card>

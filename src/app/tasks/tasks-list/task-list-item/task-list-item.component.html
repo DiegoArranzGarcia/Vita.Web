@@ -1,0 +1,13 @@
+<form [formGroup]="_taskForm">
+    <div class="task__container">
+        <input [readOnly]="readOnly" formControlName="title" placeholder="Enter title for this task" spellcheck="false"/>    
+        <vita-date-selector [readOnly]="readOnly" formControlName="plannedDate" [dateSelected]="this._taskForm.get('plannedDate').value"></vita-date-selector>
+        <vita-task-status [taskStatus]="'Ready'"></vita-task-status>
+        <button type="delete" *ngIf="!readOnly" (click)="handleOnDeleteClick()">
+            <fa-icon [icon]="_deleteIcon" [size]="'sm'"></fa-icon>            
+        </button>
+        <button type="submit" *ngIf="_taskForm.valid && _taskForm.dirty" (click)="handleOnSubmit()">
+            <fa-icon [icon]="_submitIcon" [size]="'sm'"></fa-icon>
+        </button>
+    </div>
+</form>

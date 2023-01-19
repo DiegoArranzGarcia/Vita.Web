@@ -1,35 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GoalHomeComponent } from './goal-home/goal-home.component';
-import { GoalCardListComponent } from './goal-card-list/goal-card-list.component';
-import { GoalCardComponent } from './goal-card/goal-card.component';
-import { CreateGoalCardComponent } from './create-goal-card/create-goal-card.component';
-import { GoalCardMenuComponent } from './goal-card-menu/goal-card-menu.component';
-import { GoalStatusComponent } from './goal-status/goal-status.component';
-import { GoalCardAimDateComponent } from './goal-card-aim-date/goal-card-aim-date.component';
-import { GoalAimDatePipe } from './goal-card-aim-date/goal-aim-date-pipe/aim-date.pipe';
-import { WeekGoalsHomeComponent } from './week-goals-home/week-goals-home.component';
+import { GoalMenuComponent } from './shared/goal-menu/goal-menu.component';
+import { GoalStatusComponent } from './shared/goal-status/goal-status.component';
+import { GoalListComponent } from './goal-home/goal-list/goal-list.component';
+import { GoalListItemComponent } from './goal-home/goal-list/goal-list-item/goal-list-item.component';
+import { GoalDetailHomeComponent } from './goal-detail-home/goal-detail-home.component';
+import { GoalTasksComponent } from './goal-detail-home/goal-tasks/goal-tasks.component';
+import { GoalDetailCardComponent } from './shared/goal-detail-card/goal-detail-card.component';
+import { CreateGoalHomeComponent } from './create-goal-home/create-goal-home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'all', pathMatch: 'full' },
-  { path: 'all', component: GoalHomeComponent,  },
-  { path: 'week', component: WeekGoalsHomeComponent },
+  { path: '', component: GoalHomeComponent,  },
+  { path: 'new', component: CreateGoalHomeComponent },
+  { path: ':id', component: GoalDetailHomeComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
+
 export class GoalRoutingModule {
   static components = [
     GoalHomeComponent,
-    CreateGoalCardComponent,
-    GoalCardListComponent,
-    GoalCardComponent,
-    GoalCardMenuComponent,
+    CreateGoalHomeComponent,
+    GoalDetailHomeComponent,
+    GoalMenuComponent,
     GoalStatusComponent,
-    GoalCardAimDateComponent,
-    WeekGoalsHomeComponent,
-    GoalAimDatePipe,
+    GoalListComponent,
+    GoalListItemComponent,
+    GoalTasksComponent,
+    GoalDetailCardComponent
   ];
 }

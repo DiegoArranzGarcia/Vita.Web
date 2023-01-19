@@ -1,0 +1,9 @@
+<div class="goal-summary">
+    <div class="goal-summary__title" [routerLink]="[goal.id]">
+        <input [value]="goal.title" spellcheck="false" [readonly]="true"/>
+    </div>
+    <div class="goal-summary__details">
+        <vita-date-selector *ngIf="goal.aimDateStart && goal.aimDateEnd" class="goal-summary__aim-date" [dateSelected]="{ start: goal.aimDateStart, end: goal.aimDateEnd}"></vita-date-selector>
+        <vita-goal-status [goalStatus]="goal.status"></vita-goal-status>
+    </div>
+</div>

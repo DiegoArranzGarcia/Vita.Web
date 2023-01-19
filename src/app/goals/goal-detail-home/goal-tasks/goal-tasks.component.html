@@ -1,0 +1,8 @@
+<vita-task-list *ngIf="_goalTasks"
+                [header]="'Tasks'"
+                [readOnly]="false"
+                [tasks]="_goalTasks"
+                (taskCreated)="handleTaskCreated($event)"
+                (taskChanged)="handleOnTaskChanged($event)"
+                (taskDeleted)="handleOnTaskDeleted($event)">
+</vita-task-list>
