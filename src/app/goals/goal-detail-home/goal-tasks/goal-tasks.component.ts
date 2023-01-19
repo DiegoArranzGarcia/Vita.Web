@@ -1,8 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Component, Input, OnInit } from '@angular/core';
 import { Task } from 'src/app/tasks/task.model';
 import { TaskService } from 'src/app/tasks/task.service';
-import { Goal } from '../../goal.model';
 import { GoalService } from '../../goal.service';
 
 @Component({

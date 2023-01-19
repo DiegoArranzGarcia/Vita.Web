@@ -14,8 +14,6 @@ export class GoalListItemComponent {
 
   @Output() deleted = new EventEmitter<Goal>();
 
-  constructor() {}
-
   handleOnDeleted(goal: Goal) {
     this.deleted.emit(goal);
   }

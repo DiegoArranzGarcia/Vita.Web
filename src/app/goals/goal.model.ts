@@ -1,5 +1,3 @@
-import { Task } from "../tasks/task.model";
-
 export enum GoalStatus {
   ToBeDefined = 'ToBeDefined',
   Ready = 'Ready',

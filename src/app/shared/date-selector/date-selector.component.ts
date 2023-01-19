@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
 import { faCalendarDay, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { Week } from 'src/app/shared/week-picker/week-picker.component';

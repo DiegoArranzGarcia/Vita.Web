@@ -54,7 +54,7 @@ export class WeeklyTasksHomeComponent implements OnInit {
     let daysOfWeek = moment.weekdays();
 
     return daysOfWeek.map((dayOfWeek, index) => {
-      var date = moment(week.startDate).add(index, 'days');
+      let date = moment(week.startDate).add(index, 'days');
       return `${dayOfWeek} ${date.format('Do')}`;
     });
   }
@@ -74,8 +74,8 @@ export class WeeklyTasksHomeComponent implements OnInit {
   }
 
   private getWeekByDate(referenceDate: Date): Week {
-    var startWeekDate: Date = new Date(referenceDate);
-    var endWeekDate: Date = new Date(referenceDate);
+    let startWeekDate: Date = new Date(referenceDate);
+    let endWeekDate: Date = new Date(referenceDate);
 
     startWeekDate.setDate(referenceDate.getDate() - referenceDate.getDay());
     endWeekDate.setDate(referenceDate.getDate() + (6 - referenceDate.getDay()));

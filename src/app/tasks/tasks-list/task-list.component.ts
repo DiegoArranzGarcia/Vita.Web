@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Task, TaskStatus } from '../task.model';
 import { TaskListViewModel } from './task-list.model';
